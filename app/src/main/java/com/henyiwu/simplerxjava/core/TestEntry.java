@@ -64,22 +64,22 @@ public class TestEntry {
         // 通过ObservableOnSubscribe关联起来，ObservableOnSubscribe中会创建emitter，做为事件发生的源头
         // ObservableCreate持有ObservableOnSubscribe的实例，创建emitter并调用ObservableOnSubscribe.subscribe()
         Observable.create(new ObservableOnSubscribe<Object>() {
-            @Override
-            public void subscribe(Emitter<Object> emitter) {
-                // subscribeOn决定这段代码执行的线程
-                Log.d("west", "subscribe currentThread " + Thread.currentThread());
-                emitter.onNext("111");
-                emitter.onNext("222");
-                emitter.onNext("333");
+                    @Override
+                    public void subscribe(Emitter<Object> emitter) {
+                        // subscribeOn决定这段代码执行的线程
+                        Log.d("west", "subscribe currentThread " + Thread.currentThread());
+                        emitter.onNext("111");
+                        emitter.onNext("222");
+                        emitter.onNext("333");
 //                emitter.onError(new Throwable());
-                emitter.onComplete();
-            }
-        }).map(new Function<Object, Object>() {
-            @Override
-            public Object apply(Object o) {
-                return "after map : " + o;
-            }
-        })
+                        emitter.onComplete();
+                    }
+                }).map(new Function<Object, Object>() {
+                    @Override
+                    public Object apply(Object o) {
+                        return "after map : " + o;
+                    }
+                })
                 // 指定上游的线程后，如果不显式指定下游线程，下游也会在该线程中执行
                 .subscribeOn(Schedulers.newThread())
                 .subscribe(new Observer<Object>() {
@@ -116,20 +116,21 @@ public class TestEntry {
      */
     public static void operatorObserveOn() {
         Observable.create(new ObservableOnSubscribe<Object>() {
-            @Override
-            public void subscribe(Emitter<Object> emitter) {
-                Log.d("west", "subscribe currentThread " + Thread.currentThread());
-                emitter.onNext("111");
-                emitter.onNext("222");
-                emitter.onNext("333");
-                emitter.onComplete();
-            }
-        }).map(new Function<Object, Object>() {
-            @Override
-            public Object apply(Object o) {
-                return "after map : " + o;
-            }
-        })
+                    @Override
+                    public void subscribe(Emitter<Object> emitter) {
+                        Log.d("west", "subscribe currentThread " + Thread.currentThread());
+                        emitter.onNext("111");
+                        emitter.onNext("222");
+                        emitter.onNext("333");
+                        emitter.onComplete();
+                    }
+                })
+                .map(new Function<Object, Object>() {
+                    @Override
+                    public Object apply(Object o) {
+                        return "after map : " + o;
+                    }
+                })
                 .subscribeOn(Schedulers.newThread())
                 .observerOn(Schedulers.mainThread())
                 .map(new Function<Object, Object>() {
