@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.henyiwu.simplerxjava.core.Emitter;
 import com.henyiwu.simplerxjava.core.Function;
+import com.henyiwu.simplerxjava.realrx.RxBus;
 import com.henyiwu.simplerxjava.realrx.RxLifecycle;
 import com.henyiwu.simplerxjava.realrx.SchedulerTransformer;
 
@@ -34,6 +35,11 @@ public class LeakActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leak2);
         rxJavaLeakTest();
+        testRxBus();
+    }
+
+    private void testRxBus() {
+        RxBus.get().post("发射来自LeakActivity的事件");
     }
 
     private void rxJavaLeakTest() {

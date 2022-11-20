@@ -8,6 +8,7 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * 对通用操作符进行抽取，做代码复用
+ * 抽取线程调度操作符
  */
 public class SchedulerTransformer<T> implements ObservableTransformer<T, T> {
 
