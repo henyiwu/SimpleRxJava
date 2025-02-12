@@ -15,7 +15,7 @@ public class TestEntry {
                 emitter.onNext("111");
                 emitter.onNext("222");
                 emitter.onNext("333");
-//                emitter.onError(new Throwable());
+//              emitter.onError(new Throwable());
                 emitter.onComplete();
             }
         }).flatMap(new Function<Object, ObservableSource<Object>>() {

@@ -3,6 +3,11 @@ package com.henyiwu.simplerxjava.core;
 import com.henyiwu.simplerxjava.core.scheduler.Scheduler;
 
 /**
+ *
+ * 订阅流：从下游往上游订阅
+ * 事件传递流：从上游往下游传递
+ *
+ *
  * 被观察者核心抽象类
  * 也是框架的入口
  * <p>
@@ -60,6 +65,10 @@ import com.henyiwu.simplerxjava.core.scheduler.Scheduler;
  */
 public abstract class Observable<T> implements ObservableSource<T> {
 
+    /**
+     * 下游订阅上游事件
+     * @param observer 下游观察者
+     */
     @Override
     public void subscribe(Observer<T> observer) {
         subscribeActual(observer);

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.henyiwu.simplerxjava.core.TestEntry
 import com.henyiwu.simplerxjava.realrx.RxBus
 import com.henyiwu.simplerxjava.realrx.RxLifecycle
 
@@ -13,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         openSecondActivity()
-//        TestEntry.operatorMap()
+        TestEntry.operatorMap()
 //        TestEntry.operatorFlatMap()
 //        TestEntry.operatorObserveOn()
 //        RxJavaSubject.testAsyncSubject();
